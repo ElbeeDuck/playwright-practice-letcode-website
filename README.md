@@ -1,80 +1,62 @@
-**Playwright Automated Testing - LetCode Website**
+# Playwright Test Automation - LetCode
 
-**Overview**
+This repository contains automated tests written in Playwright for practicing UI testing on the [LetCode](https://letcode.in/) website. The tests cover various UI elements and interactions to help understand Playwright's capabilities.
 
-This repository contains Playwright test scripts for practicing automated testing using LetCode. 
-The LetCode website provides various UI elements to interact with, making it a great platform for learning Playwright automation.
-This practice is very much a work in progress - as I try and work out how to test each element in playwright and learn about various automated testing techniques.
-The goal is to explore different Playwright features while improving automation testing skills.
+## Overview
+This practice is very much a work in progress - as I try and work out how to test each element in Playwright and learn about various automated testing techniques. The goal is to explore different Playwright features while improving my automation testing skills.
 
-**Prerequisites**
+## Getting Started
 
-Ensure you have the following installed:
+### Prerequisites
+- Install [Node.js](https://nodejs.org/) (recommended LTS version)
+- Install Playwright via npm:
+  ```sh
+  npm install -D @playwright/test
+  ```
+- Install Playwright dependencies:
+  ```sh
+  npx playwright install
+  ```
 
-Node.js (v16 or later recommended)
-
-Playwright
-
-**Installation**
-
-Clone this repository and install dependencies:
-
-# Clone the repository
-git clone <your-repo-url>
-cd <your-repo-folder>
-
-# Install dependencies
-npm install
-
-**Running Tests**
-
-To run all tests, use:
-
+### Running Tests
+To execute the tests, run the following command:
+```sh
 npx playwright test
+```
+
+For headed mode (visible browser UI):
+```sh
+npx playwright test --headed
+```
 
 To run a specific test file:
+```sh
+npx playwright test tests/example.spec.js
+```
 
-npx playwright test tests/sort.spec.js
+### Debugging
+Use Playwright's UI mode to debug tests:
+```sh
+npx playwright test --ui
+```
+Or add a debug statement within a test:
+```js
+await page.pause();
+```
 
-To run tests in headed mode (see the browser UI):
+## Test Scenarios
+The tests include:
+- Drag and drop functionality
+- Sorting items
+- Handling sliders
+- Working with forms and buttons
+- Interacting with alerts and modals
+- etc
 
-npx playwright test --headed
+## Contributions
+This project is for learning purposes, but feel free to suggest improvements or share your own test cases
 
-**Test Scenarios**
+## License
+This repository is open for learning purposes and does not have a specific license attached.
 
-The tests cover different interactions with LetCode:
-
-Sorting Tests - Drag-and-drop functionality
-
-Slider Tests - Moving sliders and validating results
-
-Form Inputs - Validating text input fields and buttons
-
-etc
-
-**Debugging**
-
-Run tests with debug mode:
-
-npx playwright test --debug
-
-Take screenshots during tests:
-
-await page.screenshot({ path: 'screenshot.png' });
-
-**Notes**
-
-Playwright browsers are installed automatically.
-
-Tests are written using Playwright Test Runner.
-
-More test cases will be added as practice progresses.
-
-**Contributions**
-
-Since this is a practice project, contributions are not required but feedback is welcome and would be very gratefully received!
-
-**License**
-
-This project is for learning purposes only.
 
