@@ -1,9 +1,11 @@
-Playwright Automated Testing - LetCode Website
+**Playwright Automated Testing - LetCode Website**
 
 **Overview**
 
 This repository contains Playwright test scripts for practicing automated testing using LetCode. 
 The LetCode website provides various UI elements to interact with, making it a great platform for learning Playwright automation.
+This practice is very much a work in progress - as I try and work out how to test each element in playwright and learn about various automated testing techniques.
+The goal is to explore different Playwright features while improving automation testing skills.
 
 **Prerequisites**
 
