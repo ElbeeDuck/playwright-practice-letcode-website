@@ -11,5 +11,8 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.49.1"
+  },
+  "dependencies": {
+    "moment": "^2.30.1"
   }
 }
