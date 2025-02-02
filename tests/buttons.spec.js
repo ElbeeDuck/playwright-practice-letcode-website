@@ -1,50 +1,60 @@
-const {test, expect} = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
+const { ButtonsPage } = require('../pages/buttonsPage');
 
 test.describe('Button tests', () => {
-    test.beforeEach(async ({page}) => {
+    test.beforeEach(async ({ page }) => {
         await page.goto('https://letcode.in/buttons');
         expect(page).toHaveTitle('Interact with Button fields');
     });
-    //select a button and come back using goBack
-    //get the x and y coords of a button
-    //find the colour of a button
-    //find the height and width of a button
-    //confirm a button is disabled
-    //click and hold a button
-    test('Buttons interactions', async ({page}) => {
-        //Goto Home and come back here using driver command
-        await page.getByRole('button', {name: 'Goto Home'}).click();
+
+    test('Navigate to Home and back', async ({ page }) => {
+        const buttonsPage = new ButtonsPage(page);
+        await buttonsPage.goToHomePage();
         await expect(page).toHaveTitle('LetCode with Koushik');
         await page.goBack();
         await expect(page).toHaveTitle('Interact with Button fields');
-        //Get the X & Y co-ordinates
-        const box = await page.getByRole('button', {name: 'Find Location'}).boundingBox();
-        console.log(box);
-        expect(box).not.toBeNull();
+    });
 
-        //Find the color of the button
-        const locator = await page.getByLabel('Find the color of the button');
-        await locator.waitFor({ state: 'visible', timeout: 5000 });
-        const color = await locator.evaluate((element) => getComputedStyle(element).color);
-        const backgroundColor = await locator.evaluate((element) => getComputedStyle(element).backgroundColor);
-    
-        // Log the color values
+    test('Get the X & Y co-ordinates', async ({ page }) => {
+        const buttonsPage = new ButtonsPage(page);
+        const box = await buttonsPage.findCoordinates();
+        console.log('X coord is: ' + box.x, ' and Y coord is: ' + box.y);
+        expect(box).not.toBeNull();
+    });
+
+    test('Find the color of the button', async ({ page }) => {
+        const buttonsPage = new ButtonsPage(page);
+        const color = await buttonsPage.findButtonColor();
         console.log(`Button color: ${color}`);
+        expect(color).toBe('rgb(255, 255, 255)');
+    });
+
+    test('Find the background color of the button', async ({ page }) => {
+        const buttonsPage = new ButtonsPage(page);
+        const backgroundColor = await buttonsPage.findButtonBackgroundColor();
         console.log(`Button background color: ${backgroundColor}`);
-        //Find the height & width of the button
-        const size = await page.getByRole('button', {name: 'How tall & fat I am?'}).boundingBox();
+        expect(backgroundColor).toBe('rgb(138, 77, 118)');
+    });
+
+    test('Find the height & width of the button', async ({ page }) => {
+        const buttonsPage = new ButtonsPage(page);
+        const size = await buttonsPage.findHeightAndWidthButton();
         console.log(`Width = ${size.width}, Height = ${size.height}`);
         expect(size).not.toBeNull();
         expect(size?.width).toBeGreaterThan(0);
-        expect(size?.height).toBeGreaterThan(0); 
-
-        //Confirm button is disabled
-        await page.getByRole('button', {name: 'Disabled'}).isDisabled();
-
-        //Click and Hold Button
-        await page.getByRole('button', {name: 'Button Hold!'}).click({
-            delay: 30,
-        });
-        
+        expect(size?.height).toBeGreaterThan(0);
     });
+
+    test('Confirm the button is disabled', async ({ page }) => {
+        const buttonsPage = new ButtonsPage(page);
+        const disabled = await buttonsPage.isButtonDisabled();
+        expect(disabled).toBeTruthy();
+    });
+
+    test('Click and hold the button', async ({ page }) => {
+        const buttonsPage = new ButtonsPage(page);
+        await buttonsPage.clickAndHoldButton();
+        //add assertions 
+    });
+
 });

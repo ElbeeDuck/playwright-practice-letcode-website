@@ -7,23 +7,37 @@ test.describe('Test inputs', () => {
         await expect(page).toHaveTitle('Interact with Input fields');
     });
 
-    test('Learn how to handle input fields', async ({ page }) => {
+    test('Enter your full Name', async ({ page }) => {
         const inputsPage = new InputsPage(page);
-        //Enter a full name into textbox
         await inputsPage.enterFullName('Elbee Duck');
-        //Append a text and press keyboard tab
+    });
+
+    test('Append a text and press keyboard tab', async ({ page }) => {
+        const inputsPage = new InputsPage(page);
         await inputsPage.appendTextAndTab(' at everything');
-        //Return what is inside a textbox
+    });
+
+    test('Return what is inside a textbox', async ({ page }) => {
+        const inputsPage = new InputsPage(page);
         const textBoxText = await inputsPage.getTextBoxContent();
         console.log(textBoxText);
         await expect(textBoxText).toBe('ortonikc');
-        //Clear the text
+    });
+
+    test('Clear the text', async ({ page }) => {
+        const inputsPage = new InputsPage(page);
         const clearTextBox = await inputsPage.clearTextBox();
         await expect(clearTextBox).toBeUndefined();
-        //Confirm an edit field is disabled
+    });
+
+    test('Confirm an edit field is disabled', async ({ page }) => {
+        const inputsPage = new InputsPage(page);
         const fieldDisabled = await inputsPage.confirmDisabled();
         await expect(fieldDisabled).toBeDisabled();
-        //Confirm edit field is readonly
+    });
+
+    test('Confirm edit field is readonly', async ({ page }) => {
+        const inputsPage = new InputsPage(page);
         const fieldReadOnly = await inputsPage.confirmReadOnly();
         await expect(fieldReadOnly).not.toBeEditable();
     });
