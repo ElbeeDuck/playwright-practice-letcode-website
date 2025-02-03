@@ -9,7 +9,6 @@ test.describe('Alert tests', () => {
     });
     test('Accept the alert', async ({ page }) => {
         await page.on('dialog', dialog => dialog.accept());
-
         const simpleAlertButton = await page.locator('#accept');
         await simpleAlertButton.click();
     });
